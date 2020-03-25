@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:err": "npm run lint -- --quiet",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:report": "npm run lint -- --format html -o ./report.html",
     "exec": "ts-node src/index.ts",
     "exec:w": "onchange -i './src/**/*' -- yarn run exec"
   },
