@@ -25,6 +25,10 @@ export const getVectorRandom = (n: number) => {
     return createArrayAtSize(n).map(() => getRandomNumberByMax(n));
 };
 
+export const getBinaryVectorRandom = (n: number) => {
+    return createArrayAtSize(n).map(() => getRandomNumberByMax(1));
+};
+
 const getTimeInMicroSeconds = () => {
     const hrTime = process.hrtime();
     return hrTime[0] * 1000000 + hrTime[1] / 1000;
