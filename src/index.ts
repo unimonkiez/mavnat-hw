@@ -1,3 +1,3 @@
-import { hw1question12 } from './hw1';
+import { hw1question21 } from './hw1/question2';
 
-hw1question12();
+hw1question21();
