@@ -36,7 +36,7 @@ const getPartiallyCircularNodeDetails = (node: Node): { circleStartIndex: number
 
     tortoise = node;
     hare = node;
-    createArrayAtSize(lam).forEach((_, i) => {
+    createArrayAtSize(lam).forEach(() => {
         hare = hare.nextNode as Node;
     });
 
