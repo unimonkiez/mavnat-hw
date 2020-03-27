@@ -1,3 +1,5 @@
+import { createArrayAtSize } from '../utils';
+
 class Node {
     public value: string;
 
@@ -13,33 +15,41 @@ class Node {
     }
 }
 
+// Brent
 const getPartiallyCircularNodeDetails = (node: Node): { circleStartIndex: number; startToCircleEnd: number } => {
-    const histogramNodeToIndex = new Map<Node, number>();
-    let index = 0;
-    let startToCircleEnd = 0;
-    let currentNode = node;
-    let foundCircle = false;
-    let circleStartIndex = -1;
-    while (!foundCircle) {
-        const prevIndex = histogramNodeToIndex.get(currentNode);
-        foundCircle = prevIndex !== undefined;
-        if (foundCircle) {
-            circleStartIndex = prevIndex as number;
-            startToCircleEnd = index;
-        } else {
-            histogramNodeToIndex.set(currentNode, index);
-            const { nextNode } = currentNode;
-            if (!nextNode) {
-                throw new Error('Not circular!');
-            }
-            currentNode = nextNode;
-            index += 1;
+    let power = 1;
+    let lam = 1;
+
+    let tortoise = node;
+    let hare = node.nextNode as Node;
+
+    while (tortoise !== hare) {
+        if (power === lam) {
+            tortoise = hare;
+            power *= 2;
+            lam = 0;
         }
+
+        hare = hare.nextNode as Node;
+        lam += 1;
+    }
+
+    tortoise = node;
+    hare = node;
+    createArrayAtSize(lam).forEach((_, i) => {
+        hare = hare.nextNode as Node;
+    });
+
+    let mu = 0;
+    while (tortoise !== hare) {
+        tortoise = tortoise.nextNode as Node;
+        hare = hare.nextNode as Node;
+        mu += 1;
     }
 
     return {
-        circleStartIndex,
-        startToCircleEnd,
+        circleStartIndex: mu,
+        startToCircleEnd: lam + mu,
     };
 };
 
