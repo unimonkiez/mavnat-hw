@@ -1,7 +1,7 @@
 import * as path from 'path';
 // eslint-disable-next-line no-unused-vars
 import { plot, Plot } from 'nodeplotlib';
-import { createFile, createNums, getRuntime, getBinaryVectorRandom, createArrayAtSize, flatArray } from '../utils';
+import { createFile, createNums, getRuntime, getBinaryVectorRandom, createArrayAtSize } from '../utils';
 
 const getHyperCubePoints = (n: number): number[][] => {
     if (n === 1) {
@@ -41,25 +41,6 @@ const getHammingDistance = (v1: number[], v2: number[]): number => {
     }, 0);
 
     return hammingDistance;
-};
-
-const getDoubleFacesOfHyperCube = (n: number) => {
-    if (n === 1) {
-        throw new Error('Too small');
-    } else if (n === 2) {
-        return [
-            [
-                [0, 0],
-                [0, 1],
-                [1, 0],
-                [1, 1],
-            ],
-        ];
-    }
-    const hyperCubePoints = getHyperCubePoints(n);
-    const hyperCubePointsLength = hyperCubePoints.length;
-
-    const doubleFaces = createArrayAtSize(hyperCubePointsLength - 3).map((_, index) => {});
 };
 
 export const hw1question21 = () => {

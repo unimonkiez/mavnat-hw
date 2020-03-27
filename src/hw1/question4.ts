@@ -1,6 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-import { plot, Plot } from 'nodeplotlib';
-
 class Node {
     public value: string;
 

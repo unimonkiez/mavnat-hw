@@ -1,8 +1,3 @@
-import * as path from 'path';
-// eslint-disable-next-line no-unused-vars
-import { plot, Plot } from 'nodeplotlib';
-import { createFile, createNums, getRuntime, getBinaryVectorRandom, createArrayAtSize, flatArray } from '../utils';
-
 const getMinimumChange = (sum: number): number[] => {
     if (sum <= 0) {
         throw new Error(`Can't do that, you silly`);
