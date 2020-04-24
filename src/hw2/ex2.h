@@ -1,0 +1,1 @@
+void findDominant(int* pArr, int size, int* pDominant, int* pDominantCtr);
