@@ -2,6 +2,6 @@
 #include "./hw2/main.h"
 
 int main() {
-   test();
+   byInputFromUser();
    return 0;
 }

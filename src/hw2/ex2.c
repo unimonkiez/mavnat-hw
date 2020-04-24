@@ -1,7 +1,9 @@
 #include <stdio.h>
 
 void findDominant(int* pArr, int size, int* pDominant, int* pDominantCtr) {
-   if (size == 1) {
+   if (size == 0) {
+      *pDominantCtr = 0;
+   } else if (size == 1) {
       *pDominant = pArr[0];
       *pDominantCtr = 1;
    } else {
@@ -21,26 +23,37 @@ void findDominant(int* pArr, int size, int* pDominant, int* pDominantCtr) {
          if (dominant1Ctr == dominant2Ctr) {
             // No dominant
             *pDominantCtr = 0;
-         } else if (dominant1Ctr > dominant2Ctr) {
-            int dominantCtrInLessArr = 0;
-            for (int i = size1; i < size; i++) {
-               int current = pArr[i];
-               if (current == dominant1) {
-                  dominantCtrInLessArr += 1;
-               }
-            }
-            *pDominant = dominant1;
-            *pDominantCtr = dominant1Ctr + dominantCtrInLessArr;
          } else {
+            int dominantCtr = 0;
             int dominantCtrInLessArr = 0;
-            for (int i = 0; i < size1; i++) {
+            int i;
+            int maxI;
+
+            if (dominant1Ctr > dominant2Ctr) {
+               *pDominant = dominant1;
+               dominantCtr = dominant1Ctr;
+               i = size1;
+               maxI = size;
+            } else {
+               *pDominant = dominant2;
+               dominantCtr = dominant2Ctr;
+               i = 0;
+               maxI = size1;
+            }
+
+            for (; i < maxI; i++) {
                int current = pArr[i];
-               if (current == dominant1) {
+               if (current == *pDominant) {
                   dominantCtrInLessArr += 1;
                }
             }
-            *pDominant = dominant2;
-            *pDominantCtr = dominant2Ctr + dominantCtrInLessArr;
+
+            dominantCtr += dominantCtrInLessArr;
+            if (dominantCtr <= (size / 2)) {
+               *pDominantCtr = 0;
+            } else {
+               *pDominantCtr = dominantCtr;
+            }
          }
       }
    }
