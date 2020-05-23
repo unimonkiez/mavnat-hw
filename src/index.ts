@@ -1,3 +1,3 @@
-import { hw1question5 } from './hw1/question5';
+import { hw3question1exercise1 } from './hw3/question1';
 
-hw1question5();
+hw3question1exercise1();
