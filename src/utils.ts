@@ -60,3 +60,19 @@ export const createFile = async (path: string, content: string) => {
 };
 
 kickstartTimeInMicrosecondsGathering();
+
+export const expect = <k, b>(value: k | b[]) => ({
+    toBe(expectedValue: k | b[]) {
+        let isEqual = false;
+
+        if (Array.isArray(value) && Array.isArray(expectedValue)) {
+            isEqual = expectedValue.every((v, i) => v === value[i]);
+        } else {
+            isEqual = expectedValue === value;
+        }
+
+        if (!isEqual) {
+            throw new Error(`Expected ${value} to equal ${expectedValue}.`);
+        }
+    },
+});

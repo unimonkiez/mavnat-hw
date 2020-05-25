@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     'import/prefer-default-export': ['off'],
     'no-console': ['off'],
+    'no-restricted-syntax': ['off'],
     "import/extensions": [
       "error",
       "ignorePackages",
